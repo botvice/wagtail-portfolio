@@ -12,7 +12,7 @@ class HomePage(Page):
     sub_heading = models.CharField(
         max_length=140, 
         blank=True, 
-        help_text='Subheading text under the banner title',
+        help_text='Subheading text above the banner title',
     )
 
     banner_background_image = models.ForeignKey(

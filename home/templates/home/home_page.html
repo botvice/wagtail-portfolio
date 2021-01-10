@@ -5,9 +5,17 @@
 {% endblock extra_css %}
 
 {% block banner %}
-    {% image page.banner_background_image fill-1600x800 as bg_image %}
-
-    <section>
-    
+    {% image page.banner_background_image fill-1600x800 as bg_img %}
+    <section class='banner' style='background: linear-gradient(180.43deg, rgba(0,0,0,0.60) 0%, rgba(0,0,0,0.80) 100%), url({{ bg_img.url }});'>
+        <div class='container'>
+            <h2 class='banner-sub-title'> {{ page.sub_heading }}</h2>
+            <h1 class='banner-title'> {{ page.title}} </h1>
+        </div>
     </section>
 {% endblock banner %}
+
+{% block content %}
+    {% for block in page.body %}
+        {% include_block block %}
+    {% endfor %}
+{% endblock content %}
