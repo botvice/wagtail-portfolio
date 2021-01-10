@@ -24,10 +24,17 @@ class HomePage(Page):
         on_delete=models.SET_NULL,
     )
 
+    body = StreamField([
+        ("title", blocks.TitleBlock()),
+        ("text", blocks.TextBlock()),
+        ("image", blocks.ImageBlock()),
+    ], null=True, blank=True)
+
+    # Admin page blocks
     content_panels = Page.content_panels + [
         MultiFieldPanel([
             FieldPanel("sub_heading"),
             ImageChooserPanel("banner_background_image"),
         ], heading="homepage banner"),
-        #StreamFieldPanel("body"),
+        StreamFieldPanel("body"),
     ]

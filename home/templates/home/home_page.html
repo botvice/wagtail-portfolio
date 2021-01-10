@@ -12,10 +12,13 @@
             <h1 class='banner-title'> {{ page.title}} </h1>
         </div>
     </section>
+    <div class='spacer'></div>
 {% endblock banner %}
 
 {% block content %}
-    {% for block in page.body %}
-        {% include_block block %}
-    {% endfor %}
+    <div class='container'>
+        {% for block in page.body %}
+            {% include_block block %}
+        {% endfor %}
+    </div>
 {% endblock content %}

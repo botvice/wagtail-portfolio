@@ -1,0 +1,6 @@
+{% load wagtailimages_tags %}
+
+<picture>
+    {% image self.image fill-570x370 as img %}
+    <img src="{{img.url}}">
+</picture>
