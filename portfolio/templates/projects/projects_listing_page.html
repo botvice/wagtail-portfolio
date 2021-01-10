@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load wagtailimages_tags wagtailcore_tags %}
+
+{% block content %}
+    <section class="container">
+        <h2 class="page-title">
+            {{self.title}}
+        </h2>
+
+    </section>
+    <section class="container column-reverse">
+        {% for project in projects %}
+            <div class="card">
+                <picture>
+                    {% image project.project_image fill-300x300 as img %}
+                    <img src="{{img.url}}">
+                </picture>
+                <h3 class="card-title">
+                    {{project.title}}
+                </h3>
+                <p>
+                    {{project.summary}}
+                </p>
+                <p>
+                    {{project.languages_used}}
+                </p>
+                <p>
+                    {{project.date_started}}
+                </p>
+            </div>
+        {% endfor %} 
+    </section>
+
+
+{% endblock content %}

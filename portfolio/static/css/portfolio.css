@@ -7,6 +7,16 @@ p, li {
     font-size: 20px;;
 }
 
+.page-title {
+    font-size: 30px;
+}
+
+.column-reverse {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+
 .spacer {
     padding: 20px;
 }
