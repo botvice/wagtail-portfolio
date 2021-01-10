@@ -2,34 +2,39 @@
 {% load wagtailimages_tags wagtailcore_tags %}
 
 {% block content %}
+
     <section class="container">
         <h2 class="page-title">
             {{self.title}}
         </h2>
-
+        <h3 class="page-sub-title">
+            {{self.sub_title}}
+        </h3>
     </section>
     <section class="container column-reverse">
         {% for project in projects %}
-            <div class="card">
-                <picture>
-                    {% image project.project_image fill-300x300 as img %}
-                    <img src="{{img.url}}">
-                </picture>
-                <h3 class="card-title">
-                    {{project.title}}
-                </h3>
-                <p>
-                    {{project.summary}}
-                </p>
-                <p>
-                    {{project.languages_used}}
-                </p>
-                <p>
-                    {{project.date_started}}
-                </p>
-            </div>
+            <a class="card" href="{{project.url}}">
+                {% image project.project_image max-320x200 as img %}
+                <img src="{{img.url}}">
+                <div class="card-content">
+
+                    <h3 class="card-title">
+                        {{project.title}}
+                    </h3>
+                    <p class="summary">
+                        {{project.summary}}
+                    </p>
+                    <p class="languages-used">
+                        Coded with: 
+                        <br>
+                        {{project.languages_used}}
+                    </p>
+                    <p class="date-started">
+                        Date started: {{project.date_started}}
+                    </p>
+                </div>
+            </a>
         {% endfor %} 
     </section>
-
 
 {% endblock content %}

@@ -4,15 +4,29 @@ from datetime import datetime
 
 from wagtail.admin import widgets
 from wagtail.core.models import Page
-from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel, MultiFieldPanel
+from wagtail.core.fields import StreamField
+from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel, MultiFieldPanel, StreamFieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 
+from streams import blocks
+
 class ProjectsListingPage(Page):
+
+    sub_title = models.CharField(
+        default="Sub Title",
+        max_length=100,
+        blank=False,
+        help_text='Smaller heading under the main title page. Max 100 words.'
+    )
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
         context['projects'] = ProjectsPage.objects.live().public()
         return context
+
+    content_panels = Page.content_panels + [
+        FieldPanel("sub_title"),
+    ]
 
 class ProjectsPage(Page):
 
@@ -45,6 +59,12 @@ class ProjectsPage(Page):
         }
     )
 
+    body = StreamField([
+        ("title", blocks.TitleBlock()),
+        ("text", blocks.TextBlock()),
+        ("image", blocks.ImageBlock()),
+    ], null=True, blank=True)
+
     content_panels = Page.content_panels + [
         MultiFieldPanel([
             FieldPanel("summary"),
@@ -52,4 +72,5 @@ class ProjectsPage(Page):
             ImageChooserPanel("project_image"),
             FieldPanel("date_started", widget=date_widget),
         ], heading="standard details"),
+        StreamFieldPanel("body"),
     ]
