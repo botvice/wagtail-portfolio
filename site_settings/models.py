@@ -2,8 +2,22 @@ from django.db import models
 
 from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.contrib.settings.models import BaseSetting, register_setting
+from wagtail.core.fields import RichTextField
 from wagtail.documents.models import Document
 from wagtail.documents.edit_handlers import DocumentChooserPanel
+
+@register_setting
+class ContactSettings(BaseSetting):
+
+    contact = RichTextField(
+        blank=True,
+        null=True,
+        features=["link"],
+    )
+
+    panels = [
+        FieldPanel("contact"),
+    ]
 
 @register_setting
 class SocialMediaSettings(BaseSetting):
