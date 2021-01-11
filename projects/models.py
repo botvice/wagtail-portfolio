@@ -11,7 +11,7 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from streams import blocks
 
 class ProjectsListingPage(Page):
-
+    parent_page_types = ["home.HomePage"]
     sub_title = models.CharField(
         default="Sub Title",
         max_length=100,
@@ -29,7 +29,7 @@ class ProjectsListingPage(Page):
     ]
 
 class ProjectsPage(Page):
-
+    parent_page_types = ["projects.ProjectsListingPage"]
     summary = models.TextField(
         blank=False,
         max_length=500,

@@ -12,6 +12,8 @@ class FlexPage(Page):
         verbose_name = "Page"
         verbose_name_plural = "Pages"
 
+    parent_page_types = ["home.HomePage", "flex.FlexPage"]
+
     body = StreamField([
         ("title", blocks.TitleBlock()),
         ("text", blocks.TextBlock()),

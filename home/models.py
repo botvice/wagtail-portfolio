@@ -8,7 +8,7 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from streams import blocks
 
 class HomePage(Page):
-
+    parent_page_types = ["wagtailcore.Page"]
     sub_heading = models.CharField(
         max_length=140, 
         blank=True, 
